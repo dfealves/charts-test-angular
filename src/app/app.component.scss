@@ -1,0 +1,22 @@
+#chartId {
+  height: 100vh;
+  margin: 0 auto;
+  width: 95vw;
+  margin-bottom: -90px;
+}
+
+.btn-group {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+
+
+  .btn {
+    background-color: #fff;
+    border: 1px solid #4e8bb7;
+    border-radius: 15px;
+    padding: 10px 8px;
+    width: 60px;
+  }
+}
