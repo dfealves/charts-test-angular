@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartDataSets, ChartOptions,  } from 'chart.js';
-import { Color, BaseChartDirective,  } from 'ng2-charts';
+import { ChartDataSets, ChartOptions  } from 'chart.js';
+import { Color, BaseChartDirective,   } from 'ng2-charts';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-// import charts from 'chart.js';
+
 import { ChartService } from './chart.service';
+import {Chart} from 'chart.js';
 
 
 
@@ -23,10 +24,12 @@ export class AppComponent implements OnInit {
   LineChartOptions: ChartOptions;
   LineChartPlugins: any[];
   LineChartType = 'line';
-  chart: any;
+  chart: Chart;
   Label: any;
   Status: any;
   StatusItem: any;
+  invoiceData: any;
+
   @ViewChild('chartsBasePart') chartsBasePart: BaseChartDirective
 
 
@@ -57,15 +60,6 @@ export class AppComponent implements OnInit {
     this.LineChartPlugins = [ChartDataLabels];
 
     this.LineChartOptions = {
-      legendCallback:function(chart){
-        console.log(chart);
-        return '<a href="google.com">teste</a>';
-        // let legendHTML = []
-        // chart.data.labels.map((item, index) => {
-        //   legendHTML.push(`<button style="backgroundColor:${chart.data.datasets.map((item) => item.borderColor[index])}">ver</button>`)
-        //   return legendHTML.join("")
-        // })
-      },
       plugins: {
         datalabels: {
           anchor: 'end',
@@ -107,7 +101,7 @@ export class AppComponent implements OnInit {
         },
       },
       legend: {
-        display: true,
+        display: false,
       },
       responsive: true,
       layout: {
@@ -148,12 +142,10 @@ export class AppComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+  this.Label = this.chartsBasePart.chart.data.labels;
+  this.invoiceData = this.chartService.normalizeChartDataInvoice();
+  console.log(this.invoiceData);
 
-
-  this.chartsBasePart.chart.generateLegend()
-  this.Label = this.chartsBasePart.chart.data.labels
-  let invoiceData = this.chartService.normalizeChartDataInvoice()
-  this.Status = invoiceData.map((paid) => paid.status)
 
  }
 }

@@ -15,7 +15,8 @@ export class ChartService {
       let test = {
         date: item.dueDate,
         status: item.cycleStatus,
-        amountPaid: item.amountPaid
+        amountPaid: item.amountPaid,
+        statementId: item.statementId
       }
       initialState.push(test);
     })

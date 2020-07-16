@@ -4,7 +4,6 @@
       <div style="display: block;">
       <canvas  id="chartId" baseChart
                   #chartsBasePart="base-chart"
-
                   [datasets]="LineChartData"
                   [labels]="LineChartLabel"
                   [options]="LineChartOptions"
@@ -14,10 +13,14 @@
                   [innerHtml]="LineChartLabel"
                  >
       </canvas>
-                <!-- <span *ngFor="let status of Status">{{ status }}</span>
-                <div class="btn-group">
-                  <button class="btn" *ngFor="let btn of Label">ver</button>
-                </div> -->
+   <div class="content">
+    <div class="item" *ngFor="let invoice of invoiceData">
+      <div style="font-size: 12px; " >{{ invoice.status }}</div>
+      <div class="btn-group">
+        <button class="btn">ver</button>
+      </div>
+  </div>
+   </div>
       </div>
     </div>
 </div>
